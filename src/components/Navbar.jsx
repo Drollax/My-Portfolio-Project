@@ -40,21 +40,23 @@ export default function Navbar() {
       <div className="flex justify-between items-center mt-[20px]">
         {/* Logo */}
         <div className="font-bold text-xl ml-[20px]">
-          Almila
+        <span className="w-12 h-12 items-center justify-center inline-flex rotate-25 bg-[#EEEBFF] rounded-full text-[#7B61FF]">A</span>
         </div>
 
         {/* Navigation Links */}
         <nav className="flex items-center gap-[60px] mr-[50px]">
-          <a href="#skills" className="text-gray-600">
-            Skills
-          </a>
-          <a href="#projects" className="text-gray-600">
-            Projects
-          </a>
-          <button className="border border-indigo-600 text-indigo-600 px-4 py-2 rounded-lg">
-            Hire me
-          </button>
-        </nav>
+  <button className="px-4 py-2 border border-transparent hover:border-indigo-600 active:bg-indigo-600 active:text-white text-gray-600 rounded-lg transition">
+    Skills
+  </button>
+
+  <button className="px-4 py-2 border border-transparent hover:border-indigo-600 active:bg-indigo-600 active:text-white text-gray-600 rounded-lg transition">
+    Projects
+  </button>
+
+  <button className="px-4 py-2 border border-transparent hover:border-indigo-600 active:bg-indigo-600 active:text-white text-indigo-600 rounded-lg transition">
+    Hire me
+  </button>
+</nav>
       </div>
     </header>
   );
