@@ -2,7 +2,7 @@ import { projectsData } from "../mockdatas/projectsData"
 
 const Projects = () => {
   return (
-    <section className="pt-10 px-6 max-w-6xl mx-auto w-full">
+    <section className="pt-10 pb-30 px-6 max-w-6xl mx-auto w-full">
       {/* Section Title */}
       <h2 className="text-5xl font-bold text-slate-900 mb-12">
         Projects
