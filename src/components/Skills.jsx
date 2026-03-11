@@ -1,12 +1,15 @@
 import { skillsData } from '../mockdatas/skillsData';
+import { useLanguage } from "../contextapi/LanguageProvider";
 
 const Skills = () => {
+  const { isTurkish } = useLanguage();
+
   return (
     <section className="pt-16 px-6 max-w-6xl mx-auto bg-white dark:bg-gray-900 transition-colors">
 
-      <h2 className="text-5xl font-bold mb-12
-      text-slate-900 dark:text-white">
-        Skills
+      {/* Section Title */}
+      <h2 className="text-5xl font-bold mb-12 text-slate-900 dark:text-white">
+        {isTurkish ? "Yetenekler" : "Skills"}
       </h2>
 
       {/* Skills Grid */}
@@ -16,14 +19,12 @@ const Skills = () => {
         {skillsData.map((skill) => (
           <div key={skill.id} className="flex flex-col gap-4">
 
-            <h3 className="text-3xl font-medium
-            text-indigo-700 dark:text-indigo-400">
-              {skill.name}
+            <h3 className="text-3xl font-medium text-indigo-700 dark:text-indigo-400">
+              {isTurkish ? skill.name.tr : skill.name.en}
             </h3>
 
-            <p className="text-sm leading-relaxed
-            text-gray-500 dark:text-gray-300">
-              {skill.description}
+            <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-300">
+              {isTurkish ? skill.description.tr : skill.description.en}
             </p>
 
           </div>

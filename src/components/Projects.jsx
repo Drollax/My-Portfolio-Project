@@ -1,13 +1,15 @@
 import { projectsData } from "../mockdatas/projectsData";
+import { useLanguage } from "../contextapi/LanguageProvider";
 
 const Projects = () => {
+  const { isTurkish } = useLanguage();
+
   return (
     <section className="pt-10 pb-30 px-6 max-w-6xl mx-auto w-full transition-colors">
 
       {/* Section Title */}
-      <h2 className="text-5xl font-bold mb-12
-      text-slate-900 dark:text-white">
-        Projects
+      <h2 className="text-5xl font-bold mb-12 text-slate-900 dark:text-white">
+        {isTurkish ? "Projeler" : "Projects"}
       </h2>
 
       {/* Projects Grid */}
@@ -19,21 +21,19 @@ const Projects = () => {
             <div className="rounded-xl overflow-hidden shadow-sm dark:shadow-black/40">
               <img
                 src={project.image}
-                alt={project.title}
+                alt={isTurkish ? project.title.tr : project.title.en}
                 className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
               />
             </div>
 
             {/* Title */}
-            <h3 className="text-3xl font-medium
-            text-indigo-700 dark:text-indigo-400">
-              {project.title}
+            <h3 className="text-3xl font-medium text-indigo-700 dark:text-indigo-400">
+              {isTurkish ? project.title.tr : project.title.en}
             </h3>
 
             {/* Description */}
-            <p className="text-sm leading-relaxed
-            text-gray-500 dark:text-gray-300">
-              {project.description}
+            <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-300">
+              {isTurkish ? project.description.tr : project.description.en}
             </p>
 
             {/* Tags */}
@@ -52,14 +52,13 @@ const Projects = () => {
 
             {/* Links */}
             <div className="flex justify-between items-center mt-2">
-
               <a
                 href={project.github}
                 className="font-medium underline transition
                 text-indigo-600 hover:text-indigo-800
                 dark:text-indigo-400 dark:hover:text-indigo-300"
               >
-                Github
+                {isTurkish ? "Github" : "Github"}
               </a>
 
               <a
@@ -68,9 +67,8 @@ const Projects = () => {
                 text-indigo-600 hover:text-indigo-800
                 dark:text-indigo-400 dark:hover:text-indigo-300"
               >
-                View Site
+                {isTurkish ? "Siteyi Görüntüle" : "View Site"}
               </a>
-
             </div>
 
           </div>
@@ -80,5 +78,5 @@ const Projects = () => {
     </section>
   );
 };
-
+/* hepsini projectsData mockdatasından çekmeyi mantıklı buldum translationstan almak yerine */
 export default Projects;

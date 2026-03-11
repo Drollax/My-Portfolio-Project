@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Profile from './components/Profile'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
+import { LanguageProvider } from './contextapi/LanguageProvider'
 import { ThemeProvider } from './contextapi/ThemeProvider'
 
 
@@ -14,6 +15,7 @@ function App() {
   return (
    <>
    <ThemeProvider>
+    <LanguageProvider>
     <div className="dark:bg-gray-900 min-h-screen transition-colors">
       <Navbar/>
       <Hero/>
@@ -22,6 +24,7 @@ function App() {
       <Projects/>
       <Footer/>
     </div>
+    </LanguageProvider>
    </ThemeProvider>
    </>
   )
