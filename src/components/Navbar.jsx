@@ -2,10 +2,22 @@
 import { useTheme } from "../contextapi/ThemeProvider";
 import { useLanguage } from "../contextapi/LanguageProvider";
 import { translations } from "../mockdatas/translations";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Navbar() {
   const { dark, toggleDark } = useTheme();
   const { isTurkish, toggleLanguage } = useLanguage();
+
+  const handleDarkToggle = () => {
+    toggleDark();
+    toast.success(`Tema ${!dark ? "karanlık" : "aydınlık"} moda geçti!`);
+  };
+
+  const handleLanguageToggle = () => {
+    toggleLanguage();
+    toast.info(`Dil ${!isTurkish ? "Türkçe" : "İngilizce"} olarak değiştirildi!`);
+  };
 
   return (
     <header className="flex flex-col py-4 px-6 md:px-12 max-w-6xl mx-auto w-full gap-4 transition-colors">
@@ -16,15 +28,13 @@ export default function Navbar() {
         {/* Dark Mode Toggle */}
         <div className="flex items-center gap-2">
           <button
-            onClick={toggleDark}
+            onClick={handleDarkToggle}
             className={`w-10 h-5 md:w-12 md:h-6 flex items-center rounded-full p-1 transition
-              ${dark ? "bg-[#4731D3]" : "bg-gray-300"}
-            `}
+              ${dark ? "bg-[#4731D3]" : "bg-gray-300"}`}
           >
             <div
               className={`bg-[#FFE86E] w-3 h-3 md:w-4 md:h-4 rounded-full shadow-md transform transition
-                ${dark ? "translate-x-5 md:translate-x-6" : ""}
-              `}
+                ${dark ? "translate-x-5 md:translate-x-6" : ""}`}
             />
           </button>
 
@@ -37,7 +47,7 @@ export default function Navbar() {
         <span className="text-gray-300 dark:text-gray-600">|</span>
 
         {/* Language Switch */}
-        <button onClick={toggleLanguage} className="font-medium text-gray-500 dark:text-gray-300">
+        <button onClick={handleLanguageToggle} className="font-medium text-gray-500 dark:text-gray-300">
           <span className="text-indigo-600 font-bold tracking-wider">
             {isTurkish 
               ? translations.navbar.languageToggle1.tr 

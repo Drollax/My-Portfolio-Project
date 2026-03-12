@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Profile from './components/Profile'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
+import ToastProvider from './components/ToastProvider'
 import { LanguageProvider } from './contextapi/LanguageProvider'
 import { ThemeProvider } from './contextapi/ThemeProvider'
 
@@ -23,6 +24,7 @@ function App() {
       <Profile/>
       <Projects/>
       <Footer/>
+      <ToastProvider />
     </div>
     </LanguageProvider>
    </ThemeProvider>
