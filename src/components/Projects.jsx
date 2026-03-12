@@ -1,23 +1,40 @@
-import { projectsData } from "../mockdatas/projectsData";
+import { useState, useEffect } from "react";
 import { useLanguage } from "../contextapi/LanguageProvider";
+import { fetchProjects } from "../utils/projects";
 
 const Projects = () => {
   const { isTurkish } = useLanguage();
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getProjects = async () => {
+      try {
+        const data = await fetchProjects();
+        setProjects(data);
+      } catch (err) {
+        setError("Projeler alınamadı!");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getProjects();
+  }, []);
+
+  if (loading) return <p>Yükleniyor...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <section className="pt-10 pb-30 px-6 max-w-6xl mx-auto w-full transition-colors">
-
-      {/* Section Title */}
       <h2 className="text-5xl font-bold mb-12 text-slate-900 dark:text-white">
         {isTurkish ? "Projeler" : "Projects"}
       </h2>
 
-      {/* Projects Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-12">
-        {projectsData.map((project) => (
+        {projects.map((project) => (
           <div key={project.id} className="flex flex-col gap-5">
-
-            {/* Project Image */}
             <div className="rounded-xl overflow-hidden shadow-sm dark:shadow-black/40">
               <img
                 src={project.image}
@@ -26,17 +43,14 @@ const Projects = () => {
               />
             </div>
 
-            {/* Title */}
             <h3 className="text-3xl font-medium text-indigo-700 dark:text-indigo-400">
               {isTurkish ? project.title.tr : project.title.en}
             </h3>
 
-            {/* Description */}
             <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-300">
               {isTurkish ? project.description.tr : project.description.en}
             </p>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-2">
               {project.tags.map((tag, index) => (
                 <span
@@ -50,7 +64,6 @@ const Projects = () => {
               ))}
             </div>
 
-            {/* Links */}
             <div className="flex justify-between items-center mt-2">
               <a
                 href={project.github}
@@ -58,7 +71,7 @@ const Projects = () => {
                 text-indigo-600 hover:text-indigo-800
                 dark:text-indigo-400 dark:hover:text-indigo-300"
               >
-                {isTurkish ? "Github" : "Github"}
+                Github
               </a>
 
               <a
@@ -70,13 +83,11 @@ const Projects = () => {
                 {isTurkish ? "Siteyi Görüntüle" : "View Site"}
               </a>
             </div>
-
           </div>
         ))}
       </div>
-
     </section>
   );
 };
-/* hepsini projectsData mockdatasından çekmeyi mantıklı buldum translationstan almak yerine */
+
 export default Projects;
