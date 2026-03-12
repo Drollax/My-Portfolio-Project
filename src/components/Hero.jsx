@@ -12,7 +12,7 @@ export default function Hero() {
       {/* IMAGE */}
       <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
         <img
-          src="./src/assets/Hero-image.png"
+          src="/assets/Hero-image.png"
           alt="Hero"
           className="rounded-2xl w-full max-w-[420px] shadow-lg dark:shadow-black/40"
         />
